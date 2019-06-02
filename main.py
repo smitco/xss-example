@@ -3,6 +3,7 @@ import base64
 
 from flask import Flask, request
 from model import Message 
+import html
 
 app = Flask(__name__)
 
@@ -31,7 +32,8 @@ def home():
 <div class="message">
 {}
 </div>
-""".format(m.content)
+""".format(html.escape(m.content))
+# format(m.content.replace('<', '&lt;').replace('>', '&gt;'))
 
     return body 
 
